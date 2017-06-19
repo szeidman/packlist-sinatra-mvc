@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   get "/signup" do
-    erb :'users/new'
+    erb :'users/create_user'
   end
 
   post "/signup" do
@@ -11,6 +11,11 @@ class UsersController < ApplicationController
       User.create(params)
       redirect "/signin"
     end
+  end
+
+  get 'users/:id' do
+    @user = User.find_by(id: params[:id])
+    erb :"users/show"
   end
 
   get "/users/account" do
