@@ -1,18 +1,4 @@
-require './config/environment'
-require './app/models/user'
-
-class ApplicationController < Sinatra::Base
-
-  configure do
-    set :views, "app/views"
-    enable :sessions
-    set :session_secret, "packlist_secret"
-  end
-
-
-  get '/' do
-    erb :index
-  end
+class UsersController < ApplicationController
 
   get "/signup" do
     erb :signup
@@ -20,25 +6,25 @@ class ApplicationController < Sinatra::Base
 
   post "/signup" do
     if params[:username].empty? || params[:password].empty?
-      redirect '/failure'
+      redirect "/users/failure"
     else
       User.create(params)
-      redirect '/signin'
+      redirect "/users/signin"
     end
   end
 
   get "/account" do
     @user = User.find(session[user_id])
-    erb :account
+    erb :"users/account"
   end
 
   get "/signin" do
     user = User.find_by(username: params[:username])
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
-        redirect "/account"
+        redirect "/users/account"
       else
-        redirect "/failure"
+        redirect "/users/failure"
       end
   end
 
@@ -46,28 +32,17 @@ class ApplicationController < Sinatra::Base
     if logged_in?
       erb :success
     else
-      redirect "/signin"
+      redirect "/users/signin"
     end
   end
 
   get "/failure" do
-    erb :failure
+    erb :"users/failure"
   end
 
   get "/logout" do
     session.clear
     redirect "/"
   end
-
-  helpers do
-    def logged_in?
-      !!session[:user_id]
-    end
-
-    def current_user
-      User.find(session[:user_id])
-    end
-  end
-
 
 end
