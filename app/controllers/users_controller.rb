@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   get "/signin" do
-    if !session[:user_id]
+    if !logged_in?
       erb :'users/signin'
     else
       redirect '/bikes'
