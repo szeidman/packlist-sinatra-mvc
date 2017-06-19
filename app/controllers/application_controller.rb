@@ -1,7 +1,14 @@
 require './config/environment'
+require '.app/models/user'
 
 class ApplicationController < Sinatra::Base
-  set :views, Proc.new { File.join(root, "../views")}
+
+  configure do
+    set :views, "app/views"
+    enable :sessions
+    set :session_secret, "password"
+  end
+
 
   get '/' do
     erb :index
@@ -16,7 +23,7 @@ class ApplicationController < Sinatra::Base
       redirect '/failure'
     else
       User.create(params)
-      redirect '/login'
+      redirect '/signin'
     end
   end
 
