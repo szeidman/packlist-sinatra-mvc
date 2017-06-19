@@ -7,4 +7,19 @@ class ApplicationController < Sinatra::Base
   get '/' do
     erb :index
   end
+
+  get "/signup" do
+    erb :signup
+  end
+
+  post "/signup" do
+    if params[:username].empty? || params[:password].empty?
+      redirect '/failure'
+    else
+      User.create(params)
+      redirect '/login'
+    end
+  end
+
+
 end
