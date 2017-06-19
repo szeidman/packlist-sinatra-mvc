@@ -11,7 +11,7 @@ class PanniersController < ApplicationController
       @pannier.items << Item.create(params[:item])
     end
     @pannier.save
-    redirect to "/panniers/#{@pannier.id}"
+    redirect to "/panniers"
   end
 
   get "/panniers/new" do
