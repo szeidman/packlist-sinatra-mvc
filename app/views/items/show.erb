@@ -1,3 +1,6 @@
 <h1><%= @item.name %></h1>
-<h4><%= @item.weight %></h4>
-<h4><a href="/items/<%= @item.id %>/edit" >Edit</a></h4>
+<h2>Weight: <%= @item.weight %> kg</h2>
+<br>
+<h3>Packed in: <a href="/items/<%= @item.pannier.id %>"><%= @item.pannier.name %></a> (<%= @item.pannier.location %>) </h3>
+<br>
+<a href="/items/<%= @item.id %>/edit" class="btn btn-primary" role="button">Edit Item</a>

@@ -8,9 +8,9 @@
   <br>
 
   <h4>Do you want to put the item in another existing pannier?</h4>
-    <% Pannier.all.each do |pannier| %>
-      <label><%= pannier.name %></label>
-      <input type="radio" id="pannier_<%= pannier.id %>" name="item[pannier_id][]" value="<%= pannier.id %>" <%='checked' if @item.panniers == pannier %>><br>
+    <% Pannier.all.each do |xpannier| %>
+      <label><%= xpannier.name %></label>
+      <input type="radio" id="pannier_<%= xpannier.id %>" name="item[pannier_id][]" value="<%= xpannier.id %>" <%='checked' if @item.pannier == xpannier %>><br>
     <% end %>
   <br>
 
@@ -31,5 +31,5 @@
   </div>
   <br>
 
-  <button type="submit" class="btn btn-primary btn-lg">Create New Item</button>
+  <button type="submit" class="btn btn-primary btn-lg">Edit Item</button>
 </form>

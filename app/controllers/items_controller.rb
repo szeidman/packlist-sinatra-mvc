@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
   post "/items" do
     @item = Item.create(params[:item])
     if !params[:pannier][:name].empty?
-      @item.panniers = Pannier.create(params[:pannier])
+      @item.pannier = Pannier.create(params[:pannier])
     end
     @item.save
     redirect to "/items"
@@ -44,11 +44,11 @@ class ItemsController < ApplicationController
     end
   end
 
-  post "/items/:id" do
+  patch "/items/:id" do
     @item = Item.find(params[:id])
     @item.update(params[:item])
     if !params[:pannier][:name].empty?
-      @items.pannier = Pannier.create(params[:item])
+      @item.pannier = Pannier.create(params[:pannier])
     end
     @item.save
     redirect to "/items/#{@item.id}"
