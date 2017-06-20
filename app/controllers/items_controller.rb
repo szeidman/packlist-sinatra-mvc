@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
   get "/items" do
     if !logged_in?
-      redirect '/signin'
+      redirect '/login'
     else
       @items = Item.all
       erb :'items/index'
@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
 
   get "/items/new" do
     if !logged_in?
-      redirect '/signin'
+      redirect '/login'
     else
       erb :'items/new'
     end
@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
 
   get "/items/:id/edit" do
     if !logged_in?
-      redirect '/signin'
+      redirect '/login'
     else
       @item = Item.find(params[:id])
       erb :'items/edit'
@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
 
   get "/items/:id" do
     if !logged_in?
-      redirect '/signin'
+      redirect '/login'
     else
       @item = Item.find(params[:id])
       erb :'items/show'

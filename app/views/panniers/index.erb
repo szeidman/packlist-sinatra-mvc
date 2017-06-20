@@ -1,4 +1,8 @@
+<h1>Panniers</h1>
+
 <% @panniers.each do |pannier| %>
   <h3><strong><a href="/panniers/<%= pannier.id %>"><%= pannier.name %></a></strong></h3>
   <h4>(<%= pannier.location %>)</h4>
 <% end %>
+
+<a href="/panniers/new">Add a pannier</a>

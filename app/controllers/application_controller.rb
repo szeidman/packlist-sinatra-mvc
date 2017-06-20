@@ -1,5 +1,4 @@
 require './config/environment'
-require './app/models/user'
 
 class ApplicationController < Sinatra::Base
 
@@ -15,6 +14,7 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
+
     def logged_in?
       !!session[:user_id]
     end
@@ -22,6 +22,7 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:user_id])
     end
+
   end
 
 
