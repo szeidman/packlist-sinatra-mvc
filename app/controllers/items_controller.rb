@@ -32,6 +32,7 @@ class ItemsController < ApplicationController
       redirect '/login'
     else
       @item = Item.find(params[:id])
+      #if item.pannier.user_id == curent_user.id
       erb :'items/edit'
     end
   end
@@ -50,6 +51,7 @@ class ItemsController < ApplicationController
     @item.update(params[:item])
     if !params[:pannier][:name].empty?
       @item.pannier = Pannier.create(params[:pannier])
+      @item.pannier.user_id = current_user.id
     end
     @item.save
     redirect to "/items/#{@item.id}"
