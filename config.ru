@@ -8,6 +8,6 @@ if defined?(ActiveRecord::Migrator) && ActiveRecord::Migrator.needs_migration?
 end
 
 use PanniersController
-# use ItemsController
+use ItemsController
 use UsersController
 run ApplicationController

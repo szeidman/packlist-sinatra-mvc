@@ -1,3 +1,3 @@
 <% @items.each do |item| %>
-  <p><%= item.name %> weighing <%= item.weight %> kg</p>
+  <p><a href="/items/<%= item.id %>"><%= item.name %> weighing <%= item.weight %> kg</a></p>
 <% end %>
