@@ -23,6 +23,11 @@ class PanniersController < ApplicationController
     erb :'panniers/edit'
   end
 
+  get "/panniers/:id" do
+    @pannier = Pannier.find(params[:id])
+    erb :'panniers/show'
+  end
+
   post "/panniers/:id" do
     @pannier = Pannier.find(params[:id])
     @pannier.update(params[:pannier])
@@ -32,5 +37,7 @@ class PanniersController < ApplicationController
     @pannier.save
     redirect to "/panniers/#{@pannier.id}"
   end
+
+
 
 end

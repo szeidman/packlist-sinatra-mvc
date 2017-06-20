@@ -1,1 +1,19 @@
-
+<div class="container">
+  <h5> Items: </h5>
+    <table class="table-condensed">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Weight (kg)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @pannier.items.each do |item| %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.weight %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
