@@ -44,7 +44,7 @@ class PanniersController < ApplicationController
     end
   end
 
-  post "/panniers/:id" do
+  patch "/panniers/:id" do
     @pannier = Pannier.find(params[:id])
     @pannier.update(params[:pannier])
     if !params[:item][:name].empty?
