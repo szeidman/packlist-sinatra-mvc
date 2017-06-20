@@ -6,7 +6,7 @@
   <input type="text" name="item[weight]" id="item_weight" placeholder="Item Weight (kg)">
   <br>
 
-  <h4>In which pannier would you like to put this item?</h4>
+  <h4>Into which pannier would you like to put this item?</h4>
     <% Pannier.all.each do |pannier| %>
       <label><%= pannier.name %></label>
       <input type="radio" id="pannier_<%= pannier.id %>" name="item[pannier_id][]" value="<%= pannier.id %>"<br>
@@ -21,7 +21,7 @@
   <!--TODO: remove elements from the spots array that were already assigned as pannier[location]s -->
   <% spots = ["Front Left", "Front Right", "Back Left", "Back Right", "Handlebar Bag", "Rack Bag"]%>
   <div class="form-group">
-    <label for="pannier_location">Which pannier is this?</label>
+    <label for="pannier_location">What type of pannier is this?</label>
       <select class="form-control" id="pannier_location" name="pannier[location]">
         <% spots.each do |spot| %>
           <option><%= spot  %></option>

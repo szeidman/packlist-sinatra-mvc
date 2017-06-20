@@ -9,20 +9,20 @@
 
   <h4>Do you want to put the item in another existing pannier?</h4>
     <% Pannier.all.each do |xpannier| %>
-      <label><%= xpannier.name %></label>
+      <label><%= xpannier.name %> (<%= xpannier.location %>)</label>
       <input type="radio" id="pannier_<%= xpannier.id %>" name="item[pannier_id][]" value="<%= xpannier.id %>" <%='checked' if @item.pannier == xpannier %>><br>
     <% end %>
   <br>
 
 
   <br>
-  <h4>Or create a new pannier to put it in?</h4>
+  <h4>Or, create a new pannier in which to pack this item:</h4>
   <input type="text" name="pannier[name]" id="pannier_name" placeholder="Pannier Name">
   <br>
   <!--TODO: remove elements from the spots array that were already assigned as pannier[location]s -->
   <% spots = ["Front Left", "Front Right", "Back Left", "Back Right", "Handlebar Bag", "Rack Bag"]%>
   <div class="form-group">
-    <label for="pannier_location">Which pannier is this?</label>
+    <label for="pannier_location">What type of pannier is this?</label>
       <select class="form-control" id="pannier_location" name="pannier[location]">
         <% spots.each do |spot| %>
           <option><%= spot  %></option>
