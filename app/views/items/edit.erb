@@ -1,1 +1,35 @@
-<input id="hidden" type="hidden" name="_method" value="PATCH">
+<h2>Edit Item</h2>
+<h3>Edit your item's name and/or weight in kilograms.<h3>
+<form action="/items" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  <input type="text" name="item[name]" id="item_name" value="<%= item.name %>">
+  <br>
+  <input type="text" name="item[weight]" id="item_weight" value="<%= item.weight %>">
+  <br>
+
+  <h4>Do you want to put the item in another existing pannier?</h4>
+    <% Pannier.all.each do |pannier| %>
+      <label><%= pannier.name %></label>
+      <input type="radio" id="pannier_<%= pannier.id %>" name="item[pannier_id][]" value="<%= pannier.id %>" <%='checked' if @pannier.items.include?(item) %>><br>
+    <% end %>
+  <br>
+
+
+  <br>
+  <h4>Or create a new pannier to put it in?</h4>
+  <input type="text" name="pannier[name]" id="pannier_name" placeholder="Pannier Name">
+  <br>
+  <!--TODO: remove elements from the spots array that were already assigned as pannier[location]s -->
+  <% spots = ["Front Left", "Front Right", "Back Left", "Back Right", "Handlebar Bag", "Rack Bag"]%>
+  <div class="form-group">
+    <label for="pannier_location">Which pannier is this?</label>
+      <select class="form-control" id="pannier_location" name="pannier[location]">
+        <% spots.each do |spot| %>
+          <option><%= spot  %></option>
+        <% end %>
+      </select>
+  </div>
+  <br>
+
+  <button type="submit" class="btn btn-primary btn-lg">Create New Item</button>
+</form>

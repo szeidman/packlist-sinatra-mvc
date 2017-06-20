@@ -17,7 +17,7 @@
   <h4>Add existing items to this pannier:</h4><br>
   <% Item.all.each do |item| %>
     <label><%= item.name %></label>
-    <input type="checkbox" id="item_<%=item.id%>" name="pannier[item_ids][]" value="<%= item.id %>"><br>
+    <input type="checkbox" id="item_<%=item.id%>" name="pannier[item_ids][]" value="<%= item.id %>" <%='checked' if @pannier.items.include?(item) %>><br>
   <% end %>
 
   <label><h4>Or add an additional item:</h4></label><br>
