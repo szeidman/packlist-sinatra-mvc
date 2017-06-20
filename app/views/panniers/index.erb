@@ -1,6 +1,4 @@
 <% @panniers.each do |pannier| %>
-  <h3><%= pannier.name %></h3>
-  <% pannier.items.each do |item| %>
-    <p><%= item.name %> weighing <%= item.weight %> kg</p>
-  <% end %>
+  <h3><strong><a href="/panniers/<%= pannier.id %>"><%= pannier.name %></a></strong></h3>
+  <h4>(<%= pannier.location %>)</h4>
 <% end %>
