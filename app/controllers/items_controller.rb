@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      @items = Item.all
+      @items = Item.joins(:pannier).where(panniers: {user_id: current_user.id})
       erb :'items/index'
     end
   end
