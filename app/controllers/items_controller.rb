@@ -1,8 +1,12 @@
 class ItemsController < ApplicationController
 
   get "/items" do
-    @items = Item.all
-    erb :'items/index'
+    if !logged_in?
+      redirect '/signin'
+    else
+      @items = Item.all
+      erb :'items/index'
+    end
   end
 
   post "/items" do
@@ -15,17 +19,29 @@ class ItemsController < ApplicationController
   end
 
   get "/items/new" do
-    erb :'items/new'
+    if !logged_in?
+      redirect '/signin'
+    else
+      erb :'items/new'
+    end
   end
 
   get "/items/:id/edit" do
-    @item = Item.find(params[:id])
-    erb :'items/edit'
+    if !logged_in?
+      redirect '/signin'
+    else
+      @item = Item.find(params[:id])
+      erb :'items/edit'
+    end
   end
 
   get "/items/:id" do
-    @item = Item.find(params[:id])
-    erb :'items/show'
+    if !logged_in?
+      redirect '/signin'
+    else
+      @item = Item.find(params[:id])
+      erb :'items/show'
+    end
   end
 
   post "/items/:id" do

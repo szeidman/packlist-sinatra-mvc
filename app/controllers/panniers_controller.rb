@@ -1,8 +1,12 @@
 class PanniersController < ApplicationController
 
   get "/panniers" do
-    @panniers = Pannier.all
-    erb :'panniers/index'
+    if !logged_in?
+      redirect '/signin'
+    else
+      @panniers = Pannier.all
+      erb :'panniers/index'
+    end
   end
 
   post "/panniers" do
@@ -15,17 +19,29 @@ class PanniersController < ApplicationController
   end
 
   get "/panniers/new" do
-    erb :'panniers/new'
+    if !logged_in?
+      redirect '/signin'
+    else
+      erb :'panniers/new'
+    end
   end
 
   get "/panniers/:id/edit" do
-    @pannier = Pannier.find(params[:id])
-    erb :'panniers/edit'
+    if !logged_in?
+      redirect '/signin'
+    else
+      @pannier = Pannier.find(params[:id])
+      erb :'panniers/edit'
+    end
   end
 
   get "/panniers/:id" do
-    @pannier = Pannier.find(params[:id])
-    erb :'panniers/show'
+    if !logged_in?
+      redirect '/signin'
+    else
+      @pannier = Pannier.find(params[:id])
+      erb :'panniers/show'
+    end
   end
 
   post "/panniers/:id" do
