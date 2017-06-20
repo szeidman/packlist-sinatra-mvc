@@ -4,13 +4,15 @@ class PanniersController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      @panniers = Pannier.all
+      @panniers = Pannier.where(user_id: current_user.id)
+      binding.pry
       erb :'panniers/index'
     end
   end
 
   post "/panniers" do
     @pannier = Pannier.create(params[:pannier])
+    binding.pry
     if !params[:item][:name].empty?
       @pannier.items << Item.create(params[:item])
     end
