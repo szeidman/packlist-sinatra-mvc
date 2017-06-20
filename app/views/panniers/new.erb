@@ -1,7 +1,7 @@
 <h2>New Pannier</h2>
 <h3>Identify your pannier and add items to it, if any.<h3>
 <form action="/panniers" method="POST">
-  <input type="text" name="pannier[name]" id="pannier_name" placeholder="Name of pannier:">
+  <input type="text" name="pannier[name]" id="pannier_name" placeholder="Pannier Name">
   <br>
   <% spots = ["Front Left", "Front Right", "Back Left", "Back Right", "Handlebar Bag", "Rack Bag"]%>
   <div class="form-group">
@@ -13,15 +13,15 @@
       </select>
   </div>
   <br>
-  <label><h4>Add existing items to this pannier:</h4></label>
+  <h4>Add existing items to this pannier:</h4><br>
   <% Item.all.each do |item| %>
     <label><%= item.name %></label>
     <input type="checkbox" id="item_<%=item.id%>" name="pannier[item_ids][]" value="<%= item.id %>"><br>
   <% end %>
 
-  <label><h4>Or add an additional item:</h4></label>
-  <input type="text" id="new_item" name="item[name]" placeholder="Name of item:">
-  <input type="text" name="item[weight]" placeholder="Weight in kilograms:">
+  <label><h4>Or add an additional item:</h4></label><br>
+  <input type="text" id="new_item" name="item[name]" placeholder="Item Name">
+  <input type="text" name="item[weight]" placeholder="Item Weight (kg)">
   <br>
   <button type="submit" class="btn btn-primary btn-lg">Create New Pannier</button>
 </form>
