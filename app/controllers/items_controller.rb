@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
     @item = Item.create(params[:item])
     if !params[:pannier][:name].empty?
       @item.pannier = Pannier.create(params[:pannier])
+      @item.pannier.user_id = current_user.id
     end
     @item.save
     redirect to "/items"

@@ -7,7 +7,7 @@
   <br>
 
   <h4>Into which pannier would you like to put this item?</h4>
-    <% Pannier.all.each do |pannier| %>
+    <% Pannier.where(user_id: current_user.id).each do |pannier| %>
       <label><%= pannier.name %></label>
       <input type="radio" id="pannier_<%= pannier.id %>" name="item[pannier_id][]" value="<%= pannier.id %>"<br>
     <% end %>
