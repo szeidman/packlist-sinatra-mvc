@@ -4,15 +4,21 @@
   <input type="text" name="pannier[name]" id="pannier_name" placeholder="Name of pannier:">
   <br>
   <label><h4>What type of pannier is it?</h4></label>
-  <input type="radio" name="pannier[type]" id="pannier_type" value="Front Left"><br>
+  <input type="radio" name="pannier[location]" id="pannier_location" value="Front Left">Front Left<br>
+  <input type="radio" name="pannier[location]" id="pannier_location" value="Front Right">Front Right<br>
+  <input type="radio" name="pannier[location]" id="pannier_location" value="Back Left">Back Left<br>
+  <input type="radio" name="pannier[location]" id="pannier_location" value="Back Right">Back Right<br>
+  <input type="radio" name="pannier[location]" id="pannier_location" value="Handlebar Bag">Handlebar Bag<br>
+  <input type="radio" name="pannier[location]" id="pannier_location" value="Rack Bag">Rack Bag<br>
 
   <label><h4>Add existing items:</h4></label>
   <% Item.all.each do |item| %>
     <label><%= item.name %></label>
     <input type="checkbox" id="item_<%=item.id%>" name="pannier[item_ids][]" value="<%= item.id %>"><br>
   <% end %>
+  
   <label><h4>Or add an additional item:</h4></label>
   <input type="text" id="new_item" name="item[name]" placeholder="Name of item:">
   <input type="text" name="item[weight]" placeholder="Weight in kilograms:">
-  <input type="submit" value="Create New Figure">
+  <input type="submit" value="Create New Pannier">
 </form>

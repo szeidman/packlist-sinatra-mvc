@@ -6,7 +6,7 @@ class PanniersController < ApplicationController
   end
 
   post "/panniers" do
-    @pannier = Pannier.create(params)
+    @pannier = Pannier.create(params[:pannier])
     if !params[:item][:name].empty?
       @pannier.items << Item.create(params[:item])
     end
