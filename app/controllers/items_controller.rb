@@ -44,12 +44,15 @@ class ItemsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      @item = Item.find(params[:id])
-      if @item.pannier.user_id == curent_user.id
-        erb :'items/show'
+      if @item
+        @item = Item.find(params[:id])
+        if @item.pannier.user_id == curent_user.id
+          erb :'items/show'
+        else
+          redirect to "/items"
+        end
       else
         redirect to "/items"
-      end
     end
   end
 
