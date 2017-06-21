@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
 
   get "/items" do
     if !logged_in?
-      # flash[:error] = "Please log in."
       redirect '/login?error=Please log in'
     else
       @items = current_user.items.all
@@ -21,7 +20,6 @@ class ItemsController < ApplicationController
 
   get "/items/new" do
     if !logged_in?
-      # flash[:error] = "Please log in."
       redirect '/login?error=Please log in'
     else
       erb :'items/new'
@@ -30,7 +28,6 @@ class ItemsController < ApplicationController
 
   get "/items/:id/edit" do
     if !logged_in?
-      # flash[:error] = "Please log in."
       redirect '/login?error=Please log in'
     else
       @item = Item.find(params[:id])
@@ -44,7 +41,6 @@ class ItemsController < ApplicationController
 
   get "/items/:id" do
     if !logged_in?
-      # flash[:error] = "Please log in."
       redirect '/login?error=Please log in'
     else
       @item = Item.find(params[:id])
