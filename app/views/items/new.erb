@@ -9,7 +9,6 @@
   <h4>Into which pannier would you like to put this item?</h4>
     <% current_user.panniers.each do |pannier| %>
       <label><%= pannier.name %></label>
-      <% binding.pry %>
       <input type="radio" name="item[pannier_id]" value="<%= pannier.id %>"
       <br></br>
     <% end %>

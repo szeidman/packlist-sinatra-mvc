@@ -14,7 +14,7 @@ class PanniersController < ApplicationController
     if !params[:item][:name].empty?
       @pannier.items << Item.create(params[:item])
     end
-    @pannier.save
+    @pannier.save!
     @pannier.user.save
     redirect to "/panniers/#{@pannier.id}"
   end
@@ -55,7 +55,7 @@ class PanniersController < ApplicationController
 
   patch "/panniers/:id" do
     @pannier = Pannier.find(params[:id])
-    @pannier.update(params[:pannier])
+    @pannier.update!(params[:pannier])
     if !params[:item][:name].empty?
       @pannier.items << Item.create(params[:item])
     end

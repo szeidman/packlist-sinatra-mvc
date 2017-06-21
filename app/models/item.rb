@@ -3,5 +3,5 @@ class Item < ActiveRecord::Base
 
   validates :name, presence: true
   validates :weight, numericality: true
-
+  validates :pannier_id, numericality: true
 end
