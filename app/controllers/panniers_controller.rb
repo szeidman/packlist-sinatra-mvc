@@ -71,4 +71,6 @@ class PanniersController < ApplicationController
     redirect to "/panniers/#{@pannier.id}"
   end
 
+  #delete
+  
 end

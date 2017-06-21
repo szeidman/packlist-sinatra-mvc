@@ -67,6 +67,6 @@ class ItemsController < ApplicationController
     redirect to "/items/#{@item.id}"
   end
 
-
+  #delete
 
 end
