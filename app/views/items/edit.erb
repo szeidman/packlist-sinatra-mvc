@@ -8,9 +8,9 @@
   <br>
 
   <h4>Do you want to move the item to another existing pannier?</h4>
-    <% Pannier.where(user_id: current_user.id).each do |xpannier| %>
+    <% current_user.panniers.each do |xpannier| %>
       <label><%= xpannier.name %> (<%= xpannier.location %>)</label>
-      <input type="radio" id="pannier_<%= xpannier.id %>" name="item[pannier_id][]" value="<%= xpannier.id %>" <%='checked' if @item.pannier == xpannier %>><br>
+      <input type="radio" id="pannier_<%= xpannier.id %>" name="item[pannier_id][]" value="<%= xpannier.id %>" <%='checked' if @item.pannier.id == xpannier.id %>><br>
     <% end %>
     <p> or <p>
     <label>Create a new pannier below and move this item there.<label>

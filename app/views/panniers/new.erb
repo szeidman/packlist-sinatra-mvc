@@ -1,5 +1,5 @@
 <h2>New Pannier</h2>
-<h3>Identify your pannier and add items to it, if any.<h3>
+<h3>Identify your pannier.<h3>
 <form action="/panniers" method="POST">
   <input type="text" name="pannier[name]" id="pannier_name" placeholder="Pannier Name">
   <br>
@@ -13,6 +13,7 @@
       </select>
   </div>
   <br>
+<!--
   <h4>Move existing items in or out of this pannier:</h4><br>
   <% Item.joins(:pannier).where(panniers: {user_id: current_user.id}).each do |item| %>
     <label><%= item.name %></label>
@@ -24,4 +25,5 @@
   <input type="text" name="item[weight]" placeholder="Item Weight (kg)">
   <br>
   <button type="submit" class="btn btn-primary btn-lg">Create New Pannier</button>
+-->
 </form>

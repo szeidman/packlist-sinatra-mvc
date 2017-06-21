@@ -4,7 +4,8 @@ class ItemsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      @items = Item.joins(:pannier).where(panniers: {user_id: current_user.id})
+      @items = current_user.items.all
+      binding.pry
       erb :'items/index'
     end
   end
@@ -12,10 +13,9 @@ class ItemsController < ApplicationController
   post "/items" do
     @item = Item.create(params[:item])
     if !params[:pannier][:name].empty?
-      @item.pannier = Pannier.create(params[:pannier])
-      @item.pannier.user_id = current_user.id
+      @item.pannier = current_user.panniers.create(params[:pannier])
     end
-    @item.save!
+    @item.save
     redirect to "/items"
   end
 
@@ -65,10 +65,9 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.update(params[:item])
     if !params[:pannier][:name].empty?
-      @item.pannier = Pannier.create(params[:pannier])
-      @item.pannier.user_id = current_user.id
+      @item.pannier = current_user.panniers.create(params[:pannier])
     end
-    @item.save!
+    @item.save
     redirect to "/items/#{@item.id}"
   end
 

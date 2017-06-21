@@ -10,13 +10,13 @@ class PanniersController < ApplicationController
   end
 
   post "/panniers" do
-    @pannier = Pannier.create(params[:pannier])
+    @pannier = current_user.panniers.create(params[:pannier])
     if !params[:item][:name].empty?
+      binding.pry
       @pannier.items << Item.create(params[:item])
     end
-    @pannier.user_id = current_user.id
     @pannier.save
-    redirect to "/panniers"
+    redirect to "/panniers/#{@pannier.id}"
   end
 
   get "/panniers/new" do
@@ -72,5 +72,5 @@ class PanniersController < ApplicationController
   end
 
   #delete
-  
+
 end

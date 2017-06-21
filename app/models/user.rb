@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   has_many :panniers
   has_many :items, through: :panniers
 
-  validates :username, presence: true
-  validates :password_digest, presence: true
-  validates_associated :items
-  validates_associated :panniers
+#Í  validates :username, presence: true
+#Í  validates :password_digest, presence: true
+#Í  validates_associated :items
+#Í  validates_associated :panniers
 
 end
