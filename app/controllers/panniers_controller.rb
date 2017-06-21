@@ -31,9 +31,13 @@ class PanniersController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      @pannier = Pannier.find(params[:id])
-      if @pannier.user_id == current_user.id
-        erb :'panniers/edit'
+      if @pannier
+        @pannier = Pannier.find(params[:id])
+        if @pannier.user_id == current_user.id
+          erb :'panniers/show'
+        else
+          redirect "/panniers"
+        end
       else
         redirect "/panniers"
       end
@@ -44,9 +48,13 @@ class PanniersController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      @pannier = Pannier.find(params[:id])
-      if @pannier.user_id == current_user.id
-        erb :'panniers/show'
+      if @pannier
+        @pannier = Pannier.find(params[:id])
+        if @pannier.user_id == current_user.id
+          erb :'panniers/show'
+        else
+          redirect "/panniers"
+        end
       else
         redirect "/panniers"
       end
