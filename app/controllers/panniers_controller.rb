@@ -32,7 +32,11 @@ class PanniersController < ApplicationController
       redirect '/login'
     else
       @pannier = Pannier.find(params[:id])
-      erb :'panniers/edit'
+      if @pannier.user_id == current_user.id
+        erb :'panniers/edit'
+      else
+        redirect "/panniers"
+      end
     end
   end
 
@@ -41,7 +45,11 @@ class PanniersController < ApplicationController
       redirect '/login'
     else
       @pannier = Pannier.find(params[:id])
-      erb :'panniers/show'
+      if @pannier.user_id == current_user.id
+        erb :'panniers/show'
+      else
+        redirect "/panniers"
+      end
     end
   end
 
