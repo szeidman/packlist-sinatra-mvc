@@ -23,5 +23,9 @@
       -->
     </tbody>
   </table>
+  <form method="post" action="/panniers/<%=@pannier.id%>/delete">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Pannier">
+  </form>
 
 <a href="/panniers/<%= @pannier.id %>/edit" class="btn btn-primary" role="button">Edit Pannier</a>

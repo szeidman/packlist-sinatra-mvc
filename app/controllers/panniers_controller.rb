@@ -16,7 +16,6 @@ class PanniersController < ApplicationController
     end
     @pannier.save
     @pannier.user.save
-    binding.pry
     redirect to "/panniers/#{@pannier.id}"
   end
 
@@ -64,6 +63,19 @@ class PanniersController < ApplicationController
     redirect to "/panniers/#{@pannier.id}"
   end
 
-  #delete
+  delete "/panniers/:id/delete" do
+    if !logged_in?
+      redirect '/login'
+    else
+      @pannier = Pannier.find(params[:id])
+      if @pannier.user_id == current_user.id
+        @pannier.delete
+        redirect "/panniers"
+      else
+        redirect "/panniers"
+      end
+    end
+  end
+
 
 end
