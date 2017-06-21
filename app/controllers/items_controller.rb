@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
   get "/items" do
     if !logged_in?
-      redirect '/login'
+      redirect '/login?error=Please log in'
     else
       @items = current_user.items.all
       erb :'items/index'
@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
 
   get "/items/new" do
     if !logged_in?
-      redirect '/login'
+      redirect '/login?error=Please log in'
     else
       erb :'items/new'
     end
@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
 
   get "/items/:id/edit" do
     if !logged_in?
-      redirect '/login'
+      redirect '/login?error=Please log in'
     else
       @item = Item.find(params[:id])
       if @item.pannier.user_id == current_user.id
@@ -41,13 +41,13 @@ class ItemsController < ApplicationController
 
   get "/items/:id" do
     if !logged_in?
-      redirect '/login'
+      redirect '/login?error=Please log in'
     else
       @item = Item.find(params[:id])
       if @item.pannier.user_id == current_user.id
         erb :'items/show'
       else
-        redirect to "/items"
+        redirect to "/items?error=Not a valid item"
       end
     end
   end
