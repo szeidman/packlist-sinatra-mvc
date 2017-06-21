@@ -66,6 +66,18 @@ class ItemsController < ApplicationController
     redirect to "/items/#{@item.id}"
   end
 
-  #delete
+  delete "/items/:id/delete" do
+    if !logged_in?
+      redirect '/login'
+    else
+      @item = Item.find(params[:id])
+      if @item.pannier.user_id == current_user.id
+        @item.delete
+        redirect "/items"
+      else
+        redirect "/items"
+      end
+    end
+  end
 
 end

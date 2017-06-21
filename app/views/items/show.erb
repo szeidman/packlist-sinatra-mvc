@@ -4,3 +4,7 @@
 <h3>Packed in: <a href="/panniers/<%= @item.pannier.id %>"><%= @item.pannier.name %></a> (<%= @item.pannier.location %>) </h3>
 <br>
 <a href="/items/<%= @item.id %>/edit" class="btn btn-primary" role="button">Edit Item</a>
+<form method="post" action="/items/<%=@item.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Item">
+</form>
