@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
       @item.pannier = Pannier.create(params[:pannier])
       @item.pannier.user_id = current_user.id
     end
-    @item.save
+    @item.save!
     redirect to "/items"
   end
 
@@ -32,8 +32,12 @@ class ItemsController < ApplicationController
       redirect '/login'
     else
       @item = Item.find(params[:id])
-      if @item.pannier.user_id == curent_user.id
-        erb :'items/edit'
+      if @item
+        if @item.pannier.user_id == current_user.id
+          erb :'items/edit'
+        else
+          redirect to "/items"
+        end
       else
         redirect to "/items"
       end
@@ -44,15 +48,16 @@ class ItemsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
+      @item = Item.find(params[:id])
       if @item
-        @item = Item.find(params[:id])
-        if @item.pannier.user_id == curent_user.id
+        if @item.pannier.user_id == current_user.id
           erb :'items/show'
         else
           redirect to "/items"
         end
       else
         redirect to "/items"
+      end
     end
   end
 
@@ -63,7 +68,7 @@ class ItemsController < ApplicationController
       @item.pannier = Pannier.create(params[:pannier])
       @item.pannier.user_id = current_user.id
     end
-    @item.save
+    @item.save!
     redirect to "/items/#{@item.id}"
   end
 
