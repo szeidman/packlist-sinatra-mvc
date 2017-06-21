@@ -18,7 +18,6 @@
       </select>
   </div>
   <br>
-  <!--
   <h4>Move existing items in or out of this pannier:</h4><br>
   <% Item.joins(:pannier).where(panniers: {user_id: current_user.id}).each do |item| %>
     <label><%= item.name %></label>
@@ -30,5 +29,4 @@
   <input type="text" name="item[weight]" placeholder="Item Weight (kg)">
   <br>
   <button type="submit" class="btn btn-primary btn-lg">Edit Pannier</button>
--->
 </form>

@@ -5,7 +5,6 @@ class ItemsController < ApplicationController
       redirect '/login'
     else
       @items = current_user.items.all
-      binding.pry
       erb :'items/index'
     end
   end
@@ -32,12 +31,8 @@ class ItemsController < ApplicationController
       redirect '/login'
     else
       @item = Item.find(params[:id])
-      if @item
-        if @item.pannier.user_id == current_user.id
-          erb :'items/edit'
-        else
-          redirect to "/items"
-        end
+      if @item.pannier.user_id == current_user.id
+        erb :'items/edit'
       else
         redirect to "/items"
       end
@@ -49,12 +44,8 @@ class ItemsController < ApplicationController
       redirect '/login'
     else
       @item = Item.find(params[:id])
-      if @item
-        if @item.pannier.user_id == current_user.id
-          erb :'items/show'
-        else
-          redirect to "/items"
-        end
+      if @item.pannier.user_id == current_user.id
+        erb :'items/show'
       else
         redirect to "/items"
       end

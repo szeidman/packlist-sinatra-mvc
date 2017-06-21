@@ -9,12 +9,13 @@
   <h4>Into which pannier would you like to put this item?</h4>
     <% current_user.panniers.each do |pannier| %>
       <label><%= pannier.name %></label>
-      <input type="radio" id="pannier_<%= pannier.id %>" name="item[pannier_id][]" value="<%= pannier.id %>"
+      <% binding.pry %>
+      <input type="radio" name="item[pannier_id]" value="<%= pannier.id %>"
       <br></br>
     <% end %>
       <p> or <p>
       <label>Create a new pannier below for this item.</label>
-      <input type="radio" name="item[pannier_id][]" id="Create a new one">
+      <input type="radio" name="pannier_id" id="">
       <br></br><br></br>
         <h4>Create a new pannier:</h4>
         <input type="text" name="pannier[name]" id="pannier_name" placeholder="Pannier Name">

@@ -12,10 +12,11 @@ class PanniersController < ApplicationController
   post "/panniers" do
     @pannier = current_user.panniers.create(params[:pannier])
     if !params[:item][:name].empty?
-      binding.pry
       @pannier.items << Item.create(params[:item])
     end
     @pannier.save
+    @pannier.user.save
+    binding.pry
     redirect to "/panniers/#{@pannier.id}"
   end
 
@@ -31,13 +32,9 @@ class PanniersController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      if @pannier
-        @pannier = Pannier.find(params[:id])
-        if @pannier.user_id == current_user.id
-          erb :'panniers/edit'
-        else
-          redirect "/panniers"
-        end
+      @pannier = Pannier.find(params[:id])
+      if @pannier.user.id == current_user.id
+        erb :'panniers/edit'
       else
         redirect "/panniers"
       end
@@ -48,13 +45,9 @@ class PanniersController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      if @pannier
-        @pannier = Pannier.find(params[:id])
-        if @pannier.user_id == current_user.id
-          erb :'panniers/show'
-        else
-          redirect "/panniers"
-        end
+      @pannier = Pannier.find(params[:id])
+      if @pannier.user_id == current_user.id
+        erb :'panniers/show'
       else
         redirect "/panniers"
       end

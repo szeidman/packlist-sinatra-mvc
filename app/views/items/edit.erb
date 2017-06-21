@@ -10,11 +10,11 @@
   <h4>Do you want to move the item to another existing pannier?</h4>
     <% current_user.panniers.each do |xpannier| %>
       <label><%= xpannier.name %> (<%= xpannier.location %>)</label>
-      <input type="radio" id="pannier_<%= xpannier.id %>" name="item[pannier_id][]" value="<%= xpannier.id %>" <%='checked' if @item.pannier.id == xpannier.id %>><br>
+      <input type="radio" id="<%= xpannier.name %>" name="item[pannier_id]" value="<%= xpannier.id %>" <%='checked' if @item.pannier == xpannier %>><br>
     <% end %>
     <p> or <p>
     <label>Create a new pannier below and move this item there.<label>
-    <input type="radio" name="item[pannier_id][]" id="Create a new one">
+    <input type="radio" name="item[pannier_id]" id="">
   <br>
   <br>
   <h4>Create new pannier in which to move this item:</h4>
