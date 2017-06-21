@@ -59,7 +59,7 @@ class PanniersController < ApplicationController
     if !params[:item][:name].empty?
       @pannier.items << Item.create(params[:item])
     end
-    @pannier.save
+    @pannier.save!
     redirect to "/panniers/#{@pannier.id}"
   end
 
@@ -75,6 +75,10 @@ class PanniersController < ApplicationController
         redirect "/panniers"
       end
     end
+  end
+
+  error ActiveRecord::RecordInvalid do
+    redirect back
   end
 
 
