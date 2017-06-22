@@ -18,7 +18,23 @@ class ItemsController < ApplicationController
       @item.save!
       redirect to "/items"
     else
-      erb :'items/new', locals: {er_mes: "ERROR:", name_message: "#{@item.errors.messages[:name].first}", weight_message:"#{@item.errors.messages[:weight].first}", pannier_id_message:"#{@item.errors.messages[:pannier_id].first}"}
+      local_hash = {er_mes: "ERROR:"}
+      if !!@item.errors.messages[:name]
+        local_hash[:name_message] = "#{@item.errors.messages[:name].first}"
+      else
+        local_hash[:name_message] = ""
+      end
+      if !!@item.errors.messages[:weight]
+        local_hash[:weight_message] = "#{@item.errors.messages[:weight].first}"
+      else
+        local_hash[:weight_message] = ""
+      end
+      if !!@item.errors.messages[:pannier_id]
+        local_hash[:pannier_id_message] = "#{@item.errors.messages[:pannier_id].first}"
+      else
+        local_hash[:pannier_id_message] = ""
+      end
+      erb :'items/new', locals: local_hash
     end
   end
 
