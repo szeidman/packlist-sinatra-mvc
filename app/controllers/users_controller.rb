@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(params)
     if @user.valid?
       @user.save
-      redirect '/login', locals: {message: "Thanks! Please sign in with your new credentials."}
+      erb :'users/login', locals: {message: "Thanks! Please sign in with your new credentials."}
     else
       local_error = {error_list: []}
       @user.errors.full_messages.each_with_index do |message|
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
         session[:user_id] = user.id
         redirect "/panniers"
       else
-        erb :'users/create_user', locals: {error_list: ["Invalid credentials. Please sign up to create an account."]}
+        erb :'users/login', locals: {error_list: ["Invalid credentials. Please try again or create account below."]}
       end
   end
 
