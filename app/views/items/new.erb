@@ -1,5 +1,23 @@
 <h2>New Item</h2>
 <h3>Add your new item here, along with its weight in kilograms.<h3>
+  <% unless locals.empty? %>
+    <div><h2 class="text-danger"><strong>
+    <%= er_mes %>
+    <br>
+    <% if name_message %>
+    <%= name_message %>
+    <br>
+    <% end %>
+    <% if weight_message %>
+    <%= weight_message %>
+    <br>
+    <% end %>
+    <% if pannier_id_message %>
+    <%= pannier_id_message %>
+    <br>
+    <% end %>
+    </strong></h2></div>
+  <% end %>
 <form action="/items" method="POST">
   <input type="text" name="item[name]" id="item_name" placeholder="Item Name">
   <br>
@@ -13,7 +31,7 @@
       <br></br>
     <% end %>
       <p> or <p>
-      <label>Create a new pannier below for this item.</label>
+      <label>Create a new pannier below.</label>
       <input type="radio" name="pannier_id" id="">
       <br></br><br></br>
         <h4>Create a new pannier:</h4>

@@ -14,8 +14,12 @@ class ItemsController < ApplicationController
     if !params[:pannier][:name].empty?
       @item.pannier = current_user.panniers.create(params[:pannier])
     end
-    @item.save!
-    redirect to "/items"
+    if @item.valid?
+      @item.save!
+      redirect to "/items"
+    else
+      erb :'items/new', locals: {er_mes: "ERROR:", name_message: "#{@item.errors.messages[:name].first}", weight_message:"#{@item.errors.messages[:weight].first}", pannier_id_message:"#{@item.errors.messages[:pannier_id].first}"}
+    end
   end
 
   get "/items/new" do

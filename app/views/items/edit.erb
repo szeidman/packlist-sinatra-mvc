@@ -1,5 +1,8 @@
 <h2>Edit Item</h2>
 <h3>Edit your item's name and/or weight in kilograms.<h3>
+  <% unless locals.empty? %>
+    <div><h2 class="text-danger"><strong><%= message %></strong></h2></div>
+  <% end %>
 <form action="/items/<%= @item.id %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
   <input type="text" name="item[name]" id="item_name" value="<%= @item.name %>">
