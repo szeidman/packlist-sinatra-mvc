@@ -19,7 +19,7 @@ class PanniersController < ApplicationController
       @pannier.user.save
       redirect to "/panniers/#{@pannier.id}"
     else
-      erb :'panniers/new', locals: {message: "ERROR: " + @pannier.errors.messages[:name].first}
+      erb :'panniers/new', locals: {message: @pannier.errors.full_messages.first}
     end
   end
 
@@ -67,7 +67,7 @@ class PanniersController < ApplicationController
       @pannier.update!
       redirect to "/panniers/#{@pannier.id}"
     else
-      erb :'panniers/edit', locals: {message: "ERROR: " + @pannier.errors.messages[:name].first}
+      erb :'panniers/new', locals: {message: @pannier.errors.full_messages.first}
     end
   end
 
