@@ -1,7 +1,6 @@
 <h1><strong>Sign up for Packlist</strong></h1>
-<% unless locals.empty? %>
+<% if locals.include?(:error_list) %>
     <div>
-      <h2 class="text-danger"><strong>ERROR:</strong></h2>
       <% error_list.each do |e| %>
         <h2 class="text-danger"><strong><%= e %></strong></h2>
       <% end %>
