@@ -2,7 +2,7 @@
   <ul>
 <% @items.each do |item| %>
     <li>
-      <a href="/items/<%= item.id %>"><%= item.name %></a></p>
+      <p><a href="/items/<%= item.id %>"><%= item.name %></a> <%= item.weight %> kg</p>
     </li>
 <% end %>
   </ul>
