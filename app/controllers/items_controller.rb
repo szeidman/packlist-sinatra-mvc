@@ -18,11 +18,7 @@ class ItemsController < ApplicationController
       @item.save!
       redirect to "/items"
     else
-      local_error = {error_list: []}
-      @item.errors.full_messages.each_with_index do |message|
-        local_error[:error_list] << message
-      end
-      erb :'items/new', locals: local_error
+      item_error
     end
   end
 
@@ -70,11 +66,7 @@ class ItemsController < ApplicationController
       @item.update!
       redirect to "/items/#{@item.id}"
     else
-      local_error = {error_list: []}
-      @item.errors.full_messages.each_with_index do |message|
-        local_error[:error_list] << message
-      end
-      erb :'items/new', locals: local_error
+      item_error
     end
   end
 
@@ -89,6 +81,16 @@ class ItemsController < ApplicationController
       else
         redirect "/items"
       end
+    end
+  end
+
+  helpers do
+    def item_error
+      local_error = {error_list: []}
+      @item.errors.full_messages.each_with_index do |message|
+        local_error[:error_list] << message
+      end
+      erb :'items/new', locals: local_error
     end
   end
 
