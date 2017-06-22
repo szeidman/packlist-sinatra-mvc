@@ -7,7 +7,7 @@
     <% end %>
   </div>
 <% end %>
-<h3>Identify your pannier.<h3>
+<h3>Name your pannier.<h3>
 <form action="/panniers" method="POST">
   <input type="text" name="pannier[name]" id="pannier_name" placeholder="Pannier Name">
   <br>
@@ -20,18 +20,17 @@
         <% end %>
       </select>
   </div>
-  <br>
+  <div>
+    <h3>Move existing items in or out of this pannier:</h3>
+    <% Item.joins(:pannier).where(panniers: {user_id: current_user.id}).each do |item| %>
+      <label><%= item.name %></label>
+      <input type="checkbox" id="item_<%=item.id%>" name="pannier[item_ids][]" value="<%= item.id %>"><br>
+    <% end %>
 
-  <h4>Move existing items in or out of this pannier:</h4><br>
-  <% Item.joins(:pannier).where(panniers: {user_id: current_user.id}).each do |item| %>
-    <label><%= item.name %></label>
-    <input type="checkbox" id="item_<%=item.id%>" name="pannier[item_ids][]" value="<%= item.id %>"><br>
-  <% end %>
-
-  <label><h4>Or add an additional item:</h4></label><br>
-  <input type="text" id="new_item" name="item[name]" placeholder="Item Name">
-  <input type="text" name="item[weight]" placeholder="Item Weight (kg)">
-  <br>
-  <button type="submit" class="btn btn-primary btn-lg">Create New Pannier</button>
-
+    <label><h4>Or add an additional item:</h4></label><br>
+    <input type="text" id="new_item" name="item[name]" placeholder="Item Name">
+    <input type="text" name="item[weight]" placeholder="Item Weight (kg)">
+    <br>
+    <button type="submit" class="btn btn-primary btn-lg">Create New Pannier</button>
+  </div>
 </form>
