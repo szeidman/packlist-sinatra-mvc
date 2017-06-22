@@ -1,4 +1,4 @@
-<h2>Sign up for Packlist</h2>
+<h1><strong>Sign up for Packlist</strong></h1>
 <% unless locals.empty? %>
     <div>
       <h2 class="text-danger"><strong>ERROR:</strong></h2>
@@ -7,11 +7,13 @@
       <% end %>
     </div>
 <% end %>
-<h3>Create a username and password.<h3>
+<h3>Create a username and password.</h3>
 <form action="/signup" method="POST">
   <input type="text" name="username" placeholder="Username:">
-  <br>
   <input type="text" name="password" placeholder="Password:">
-  <br>
-  <input type="submit" value="Sign Up">
+  <input type="submit" value="Sign Up" class="btn btn-primary">
 </form>
+<br>
+<br>
+<h4>Already have an account?</h4>
+<a href="/login" class="btn btn-primary" role="button">Log In</a>

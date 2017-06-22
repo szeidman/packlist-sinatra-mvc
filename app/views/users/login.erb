@@ -1,4 +1,4 @@
-<h1> Sign in to Packlist </h1>
+<h1><strong> Log in to Packlist </strong></h1>
 <% if locals.include?(:error_list) %>
     <div>
       <h2 class="text-danger"><strong>ERROR:</strong></h2>
@@ -12,10 +12,13 @@
     <h2 class="text-primary"><%= message %></h2>
   </div>
 <% end %>
-<h2> Enter your username and password to sign in. </h2>
-
+<h3> Enter your username and password to log in. </h3>
 <form action="/login" method="POST">
   <input type="text" name="username" placeholder="Username:">
   <input type="text" name="password" placeholder="Password:">
-  <input type="submit" value="Sign In">
+  <input type="submit" value="Log In" class="btn btn-primary">
 </form>
+<br>
+<br>
+<h4>Don't have an account yet?</h4>
+<a href="/signup" class="btn btn-primary" role="button">Create an Account</a>
