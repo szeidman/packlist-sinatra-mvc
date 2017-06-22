@@ -1,4 +1,7 @@
 <h2>New Pannier</h2>
+<% unless locals.empty? %>
+  <div><h2 class="text-danger"><strong><%= message %></strong></h2></div>
+<% end %>
 <h3>Identify your pannier.<h3>
 <form action="/panniers" method="POST">
   <input type="text" name="pannier[name]" id="pannier_name" placeholder="Pannier Name">

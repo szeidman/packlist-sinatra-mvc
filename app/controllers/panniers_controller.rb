@@ -14,9 +14,13 @@ class PanniersController < ApplicationController
     if !params[:item][:name].empty?
       @pannier.items << Item.create(params[:item])
     end
-    @pannier.save!
-    @pannier.user.save
-    redirect to "/panniers/#{@pannier.id}"
+    if @pannier.valid?
+      @pannier.save
+      @pannier.user.save
+      redirect to "/panniers/#{@pannier.id}"
+    else
+      erb :'panniers/new', locals: {message: "ERROR: " + @pannier.errors.messages[:name].first}
+    end
   end
 
   get "/panniers/new" do
@@ -55,12 +59,16 @@ class PanniersController < ApplicationController
 
   patch "/panniers/:id" do
     @pannier = Pannier.find(params[:id])
-    @pannier.update!(params[:pannier])
-    if !params[:item][:name].empty?
-      @pannier.items << Item.create(params[:item])
+    @pannier.assign_attributes(params[:pannier])
+    if @pannier.valid?
+      if !params[:item][:name].empty?
+        @pannier.items << Item.create(params[:item])
+      end
+      @pannier.update!
+      redirect to "/panniers/#{@pannier.id}"
+    else
+      erb :'panniers/edit', locals: {message: "ERROR: " + @pannier.errors.messages[:name].first}
     end
-    @pannier.save!
-    redirect to "/panniers/#{@pannier.id}"
   end
 
   delete "/panniers/:id/delete" do
@@ -78,7 +86,14 @@ class PanniersController < ApplicationController
   end
 
   error ActiveRecord::RecordInvalid do
-    redirect back
+    erb :'panniers/new', locals: {message: request.env['sinatra.error'].to_s.gsub("Validation #failed: ", "").gsub("Name ", "")}
+    #@pannier.errors.messages[:name].first
+    #if request.path == "/panniers/new"
+#    erb :'panniers/new'
+  #  elsif request.path == "/panniers/<%= @pannier.id %>"
+  #    erb :'panniers/edit', @pannier
+  #  end
+    # redirect back
   end
 
 

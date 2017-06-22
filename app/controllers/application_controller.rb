@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
     set :views, "app/views"
     enable :sessions
     set :session_secret, "packlist_secret"
-    set :show_exceptions, false
+  #  set :show_exceptions, false
   end
 
   get '/' do

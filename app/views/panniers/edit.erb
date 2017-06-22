@@ -1,5 +1,8 @@
 <h2>Edit <%= @pannier.name %> </h2>
 <h3>Edit this pannier and its contents.<h3>
+<% unless locals.empty? %>
+  <div><h2 class="text-danger"><strong><%= message %></strong></h2></div>
+<% end %>
 <form action="/panniers/<%= @pannier.id %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
   <input type="text" name="pannier[name]" id="pannier_name" value="<%= @pannier.name %>">
