@@ -1,7 +1,7 @@
 class Item < ActiveRecord::Base
   belongs_to :pannier
 
-  validates :name, presence: {message: "Please enter a name."}
-  validates :weight, numericality: {message: "Weight needs to be a number."}
-  validates :pannier_id, numericality: {message: "Please choose or add a pannier for this item."}
+  validates_presence_of :name
+  validates_numericality_of :weight, message: "needs to be a number."
+  validates_numericality_of :pannier_id, message: "must be chosen or added for this item."
 end

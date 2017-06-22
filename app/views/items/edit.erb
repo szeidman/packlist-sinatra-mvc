@@ -1,16 +1,12 @@
 <h2>Edit Item</h2>
 <h3>Edit your item's name and/or weight in kilograms.<h3>
   <% unless locals.empty? %>
-    <div><h2 class="text-danger"><strong>
-    <%= er_mes %>
-    <br>
-    <%= name_message %>
-    <br>
-    <%= weight_message %>
-    <br>
-    <%= pannier_id_message %>
-    <br>
-    </strong></h2></div>
+    <div>
+      <h2 class="text-danger"><strong>ERROR:</strong></h2>
+      <% error_list.each do |e| %>
+        <h2 class="text-danger"><strong><%= e %></strong></h2>
+        <% end %>
+    </div>
   <% end %>
 <form action="/items/<%= @item.id %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="PATCH">

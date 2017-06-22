@@ -1,16 +1,12 @@
 <h2>New Item</h2>
 <h3>Add your new item here, along with its weight in kilograms.<h3>
   <% unless locals.empty? %>
-    <div><h2 class="text-danger"><strong>
-    <%= er_mes %>
-    <br>
-    <%= name_message %>
-    <br>
-    <%= weight_message %>
-    <br>
-    <%= pannier_id_message %>
-    <br>
-    </strong></h2></div>
+    <div>
+      <h2 class="text-danger"><strong>ERROR:</strong></h2>
+      <% error_list.each do |e| %>
+        <h2 class="text-danger"><strong><%= e %></strong></h2>
+        <% end %>
+    </div>
   <% end %>
 <form action="/items" method="POST">
   <input type="text" name="item[name]" id="item_name" placeholder="Item Name">
