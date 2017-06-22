@@ -70,23 +70,11 @@ class ItemsController < ApplicationController
       @item.update!
       redirect to "/items/#{@item.id}"
     else
-      local_hash = {er_mes: "ERROR:"}
-      if !!@item.errors.messages[:name]
-        local_hash[:name_message] = "#{@item.errors.messages[:name].first}"
-      else
-        local_hash[:name_message] = ""
+      local_error = {error_list: []}
+      @item.errors.full_messages.each_with_index do |message|
+        local_error[:error_list] << message
       end
-      if !!@item.errors.messages[:weight]
-        local_hash[:weight_message] = "#{@item.errors.messages[:weight].first}"
-      else
-        local_hash[:weight_message] = ""
-      end
-      if !!@item.errors.messages[:pannier_id]
-        local_hash[:pannier_id_message] = "#{@item.errors.messages[:pannier_id].first}"
-      else
-        local_hash[:pannier_id_message] = ""
-      end
-      erb :'items/edit', locals: local_hash
+      erb :'items/new', locals: local_error
     end
   end
 
