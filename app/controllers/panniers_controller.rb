@@ -2,7 +2,7 @@ class PanniersController < ApplicationController
 
   get "/panniers" do
     if !logged_in?
-      redirect '/login'
+      erb :'users/login', locals: {error_list: ["Login required."]}
     else
       @panniers = Pannier.where(user_id: current_user.id)
       erb :'panniers/index'
@@ -19,13 +19,17 @@ class PanniersController < ApplicationController
       @pannier.user.save
       redirect to "/panniers/#{@pannier.id}"
     else
-      pannier_error
+      local_error = {error_list: []}
+      @pannier.errors.full_messages.each_with_index do |message|
+        local_error[:error_list] << message
+      end
+      erb :'panniers/new', locals: local_error
     end
   end
 
   get "/panniers/new" do
     if !logged_in?
-      redirect '/login'
+      erb :'users/login', locals: {error_list: ["Login required."]}
     else
       erb :'panniers/new'
     end
@@ -33,7 +37,7 @@ class PanniersController < ApplicationController
 
   get "/panniers/:id/edit" do
     if !logged_in?
-      redirect '/login'
+      erb :'users/login', locals: {error_list: ["Login required."]}
     else
       @pannier = Pannier.find(params[:id])
       if @pannier.user.id == current_user.id
@@ -46,7 +50,7 @@ class PanniersController < ApplicationController
 
   get "/panniers/:id" do
     if !logged_in?
-      redirect '/login'
+      erb :'users/login', locals: {error_list: ["Login required."]}
     else
       @pannier = Pannier.find(params[:id])
       if @pannier.user_id == current_user.id
@@ -67,13 +71,17 @@ class PanniersController < ApplicationController
       @pannier.update!
       redirect to "/panniers/#{@pannier.id}"
     else
-      pannier_error
+      local_error = {error_list: []}
+      @pannier.errors.full_messages.each_with_index do |message|
+        local_error[:error_list] << message
+      end
+      erb :'panniers/edit', locals: local_error
     end
   end
 
   delete "/panniers/:id/delete" do
     if !logged_in?
-      redirect '/login'
+      erb :'users/login', locals: {error_list: ["Login required."]}
     else
       @pannier = Pannier.find(params[:id])
       if @pannier.user_id == current_user.id
@@ -87,11 +95,7 @@ class PanniersController < ApplicationController
 
   helpers do
     def pannier_error
-      local_error = {error_list: []}
-      @pannier.errors.full_messages.each_with_index do |message|
-        local_error[:error_list] << message
-      end
-      erb :'items/new', locals: local_error
+
     end
 
   end

@@ -1,4 +1,12 @@
 <h1> Sign in to Packlist </h1>
+<% unless locals.empty? %>
+    <div>
+      <h2 class="text-danger"><strong>ERROR:</strong></h2>
+      <% error_list.each do |e| %>
+        <h2 class="text-danger"><strong><%= e %></strong></h2>
+      <% end %>
+    </div>
+<% end %>
 <h2> Enter your username and password to sign in. </h2>
 
 <form action="/login" method="POST">
