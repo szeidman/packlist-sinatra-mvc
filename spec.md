@@ -16,7 +16,7 @@ Panniers and Items views will only show those created by the same user. URLs for
 - [x] Include user input validations
 Added validations to the models by checking for valid params before saving or updating.
 - [x] Display validation failures to user with error message (example form URL e.g. /posts/new)
-Used 
+When validation checks fail, locals are populated and displayed at the top of the page explaining the error.
 - [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm

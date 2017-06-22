@@ -93,6 +93,7 @@ class PanniersController < ApplicationController
       end
       erb :'items/new', locals: local_error
     end
+
   end
 
 end
