@@ -58,12 +58,16 @@ class ItemsController < ApplicationController
 
   patch "/items/:id" do
     @item = Item.find(params[:id])
-    @item.update!(params[:item])
-    if !params[:pannier][:name].empty?
-      @item.pannier = current_user.panniers.create(params[:pannier])
+    @item.assign_attributes(params[:item])
+    if @item.valid?
+      if !params[:pannier][:name].empty?
+        @item.pannier = current_user.panniers.create(params[:pannier])
+      end
+      @item.update!
+      redirect to "/items/#{@item.id}"
+    else
+      erb :'items/new', locals: {er_mes: "ERROR:", name_message: "#{@item.errors.messages[:name].first}", weight_message:"#{@item.errors.messages[:weight].first}", pannier_id_message:"#{@item.errors.messages[:pannier_id].first}"}
     end
-    @item.save!
-    redirect to "/items/#{@item.id}"
   end
 
   delete "/items/:id/delete" do

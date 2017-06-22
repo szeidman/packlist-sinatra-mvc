@@ -85,16 +85,4 @@ class PanniersController < ApplicationController
     end
   end
 
-  error ActiveRecord::RecordInvalid do
-    erb :'panniers/new', locals: {message: request.env['sinatra.error'].to_s.gsub("Validation #failed: ", "").gsub("Name ", "")}
-    #@pannier.errors.messages[:name].first
-    #if request.path == "/panniers/new"
-#    erb :'panniers/new'
-  #  elsif request.path == "/panniers/<%= @pannier.id %>"
-  #    erb :'panniers/edit', @pannier
-  #  end
-    # redirect back
-  end
-
-
 end
