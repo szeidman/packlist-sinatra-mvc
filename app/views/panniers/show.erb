@@ -10,18 +10,18 @@
       </tr>
     </thead>
     <tbody>
+      <% total_weight = 0 %>
       <% @pannier.items.each do |item| %>
         <tr>
           <td><a href="/items/<%= item.id %>"><%= item.name %></a></td>
           <td><%= item.weight %></td>
+          <% total_weight += item.weight %>
         </tr>
       <% end %>
-      <!--TODO Figure out best way to display total weight
         <tr>
-          <td><strong>TOTAL</strong></td>
-          <% %>
-          <td><</td>
-      -->
+          <td><strong>Total weight</strong></td>
+          <td><%= total_weight.round(2) %>
+        </tr>
     </tbody>
   </table>
 <br>
