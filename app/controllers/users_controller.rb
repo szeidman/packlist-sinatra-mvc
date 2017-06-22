@@ -11,8 +11,8 @@ class UsersController < ApplicationController
   post "/signup" do
     @user = User.new(params)
     if @user.valid?
-      @user.save
-      erb :'users/login', locals: {message: "Thanks! Please sign in with your new credentials."}
+      @user.save!
+      redirect '/login'
     else
       local_error = {error_list: []}
       @user.errors.full_messages.each_with_index do |message|
@@ -48,17 +48,6 @@ class UsersController < ApplicationController
   get "/logout" do
     session.clear
     redirect "/"
-  end
-
-  helpers do
-    def user_error
-      local_error = {error_list: []}
-      @user.errors.full_messages.each_with_index do |message|
-        local_error[:error_list] << message
-      end
-      erb :'users/create_user', locals: local_error
-    end
-
   end
 
 end
