@@ -12,10 +12,10 @@ class PanniersController < ApplicationController
   post "/panniers" do
     @pannier = current_user.panniers.new(params[:pannier])
     if @pannier.valid?
+      @pannier.save
       if !params[:item][:name].empty?
-        @item = Item.create(params[:item])
-        if @item.valid?
-          @pannier.items << @item
+        if !params[:item][:weight].empty?
+          @pannier.items << Item.create(params[:item])
           @pannier.save
           redirect to "/panniers/#{@pannier.id}"
         else
@@ -72,10 +72,10 @@ class PanniersController < ApplicationController
     @pannier = Pannier.find(params[:id])
     @pannier.assign_attributes(params[:pannier])
     if @pannier.valid?
+      @pannier.save
       if !params[:item][:name].empty?
-        @item = Item.create(params[:item])
-        if @item.valid?
-          @pannier.items << @item
+        if !params[:item][:weight].empty?
+          @pannier.items << Item.create(params[:item])
           @pannier.save
           redirect to "/panniers/#{@pannier.id}"
         else
@@ -106,13 +106,6 @@ class PanniersController < ApplicationController
         redirect "/panniers"
       end
     end
-  end
-
-  helpers do
-    def pannier_error
-
-    end
-
   end
 
 end
