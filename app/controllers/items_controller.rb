@@ -67,7 +67,7 @@ class ItemsController < ApplicationController
       if !params[:pannier][:name].empty?
         @item.pannier = current_user.panniers.create(params[:pannier])
       end
-      @item.update!
+      @item.save
       redirect to "/items/#{@item.id}"
     else
       local_error = {error_list: []}
