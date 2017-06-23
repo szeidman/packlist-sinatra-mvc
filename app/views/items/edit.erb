@@ -14,17 +14,16 @@
   <input type="text" name="item[weight]" id="item_weight" value="<%= @item.weight %>">
   <br>
 
-  <h4>Do you want to move the item to another existing pannier?</h4>
+  <h4>Select an existing pannier, or "Create new" to create a new one below</h4>
     <% current_user.panniers.each do |xpannier| %>
       <label><%= xpannier.name %> (<%= xpannier.location %>)</label>
       <input type="radio" id="<%= xpannier.name %>" name="item[pannier_id]" value="<%= xpannier.id %>" <%='checked' if @item.pannier == xpannier %>><br>
     <% end %>
-    <p> or <p>
-    <label>Create a new pannier below and move this item there.<label>
+    <label>Create new</label>
     <input type="radio" name="item[pannier_id]" value="" id="">
   <br>
   <br>
-  <h4>Create new pannier in which to move this item:</h4>
+  <h4>Create a new pannier for this item:</h4>
   <input type="text" name="pannier[name]" id="pannier_name" placeholder="Pannier Name">
   <br>
   <!--TODO: remove elements from the spots array that were already assigned as pannier[location]s -->
