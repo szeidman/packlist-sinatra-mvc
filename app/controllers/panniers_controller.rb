@@ -12,9 +12,9 @@ class PanniersController < ApplicationController
   post "/panniers" do
     @pannier = current_user.panniers.new(params[:pannier])
     if @pannier.valid?
-      @pannier.save
       if !params[:item][:name].empty?
         if !params[:item][:weight].empty?
+          @pannier.save
           @pannier.items << Item.create(params[:item])
           @pannier.save
           redirect to "/panniers/#{@pannier.id}"
@@ -72,9 +72,9 @@ class PanniersController < ApplicationController
     @pannier = Pannier.find(params[:id])
     @pannier.assign_attributes(params[:pannier])
     if @pannier.valid?
-      @pannier.save
       if !params[:item][:name].empty?
         if !params[:item][:weight].empty?
+          @pannier.save
           @pannier.items << Item.create(params[:item])
           @pannier.save
           redirect to "/panniers/#{@pannier.id}"
