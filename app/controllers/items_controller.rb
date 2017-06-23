@@ -63,10 +63,10 @@ class ItemsController < ApplicationController
   patch "/items/:id" do
     @item = Item.find(params[:id])
     @item.assign_attributes(params[:item])
+    if !params[:pannier][:name].empty?
+      @item.pannier = current_user.panniers.create(params[:pannier])
+    end
     if @item.valid?
-      if !params[:pannier][:name].empty?
-        @item.pannier = current_user.panniers.create(params[:pannier])
-      end
       @item.save
       redirect to "/items/#{@item.id}"
     else
