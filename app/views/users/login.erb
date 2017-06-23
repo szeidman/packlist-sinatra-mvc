@@ -6,11 +6,6 @@
       <% end %>
     </div>
 <% end %>
-<% if locals.include?(:message) %>
-  <div>
-    <h2 class="text-primary"><%= message %></h2>
-  </div>
-<% end %>
 <h3> Enter your username and password to log in. </h3>
 <form action="/login" method="POST">
   <input type="text" name="username" placeholder="Username:">
