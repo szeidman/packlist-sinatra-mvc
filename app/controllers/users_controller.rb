@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   get "/signup" do
     if !logged_in?
+      @user = User.new
       erb :'users/create_user'
     else
       redirect '/panniers'
@@ -29,6 +30,7 @@ class UsersController < ApplicationController
 
   get "/login" do
     if !logged_in?
+      @user = User.new
       erb :'users/login'
     else
       redirect '/panniers'
@@ -36,9 +38,9 @@ class UsersController < ApplicationController
   end
 
   post "/login" do
-    user = User.find_by(username: params[:username])
-      if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
+    @user = User.find_by(username: params[:username])
+      if @user && @user.authenticate(params[:password])
+        session[:user_id] = @user.id
         redirect "/panniers"
       else
         erb :'users/login', locals: {error_list: ["Invalid credentials. Please try again or create account below."]}

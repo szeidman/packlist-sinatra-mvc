@@ -3,6 +3,6 @@ class User < ActiveRecord::Base
   has_many :panniers
   has_many :items, through: :panniers
 
-  validates_presence_of :username
-
+  validates :username, presence: true
+  validates :username, uniqueness: true
 end

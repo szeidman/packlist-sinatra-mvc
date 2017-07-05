@@ -8,8 +8,8 @@
 <% end %>
 <h3>Create a username and password.</h3>
 <form action="/signup" method="POST">
-  <input type="text" name="username" placeholder="Username:">
-  <input type="text" name="password" placeholder="Password:">
+  <input type="text" name="username" placeholder="Username:" value="<%= @user.username %>">
+  <input type="password" name="password" placeholder="Password:" >
   <input type="submit" value="Sign Up" class="btn btn-primary">
 </form>
 <br>
