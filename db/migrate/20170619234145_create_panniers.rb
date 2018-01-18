@@ -1,4 +1,4 @@
-class CreatePanniers < ActiveRecord::Migration
+class CreatePanniers < ActiveRecord::Migration[4.2]
   def change
     create_table :panniers do |t|
       t.string :name
