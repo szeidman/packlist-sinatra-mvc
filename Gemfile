@@ -14,9 +14,12 @@ gem 'rack-test'
 gem 'bcrypt'
 gem 'require_all'
 
-
 group :development do
   gem 'sqlite3'
+end
+
+group :development, :test do
+  gem 'capybara'
 end
 
 group :production do
