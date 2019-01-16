@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem "rack", ">= 2.0.6"
 gem 'activerecord', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
-gem 'sinatra', '~> 2.0.1'
+gem 'sinatra', '>= 2.0.2'
 gem 'thin'
 gem 'shotgun'
 gem 'tux'
